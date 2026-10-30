@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SDET Journal · Canro Sinabutar</title>
+<meta name="description" content="Notes on test automation, agentic AI for QA, and 14 years of quality engineering.">
+<meta property="og:title" content="SDET Journal · Canro Sinabutar">
+<meta property="og:description" content="Notes on test automation, agentic AI for QA, and 14 years of quality engineering.">
+<meta property="og:url" content="https://canro-sinabutar.github.io/blog/">
+<meta name="theme-color" content="#000000">
+<link rel="canonical" href="https://canro-sinabutar.github.io/blog/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2316a34a'/%3E%3Cpath d='M9 16.5l4.5 4.5L23 11.5' stroke='white' stroke-width='3.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/blog.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="dot"></span>canro.sinabutar</a>
+    <nav>
+      <a class="hide-sm" href="/#work">Work</a>
+      <a class="hide-sm" href="/#experience">Experience</a>
+      <a class="on" href="/blog/">Blog</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="blog-head">
+    <span class="eyebrow">SDET Journal</span>
+    <h1>Writing</h1>
+    <p>Notes on test automation, agentic AI for QA, and what 14 years of quality engineering taught me.</p>
+  </div>
+  <div class="posts">
+    <a class="post-card" href="from-scripts-to-agents/">
+      <div>
+        <div class="meta"><time datetime="2026-10-07">October 7, 2026</time> · <b>4 min read</b></div>
+        <h2>From Scripts to Agents: Building Agentic AI Workflows for Autonomous Regression Testing</h2>
+        <p>Scripted automation broke every time a locator changed. Agentic QA gives an AI agent tools and a goal, then lets it perceive, decide, act and observe at runtime. How it works, how to structure multi-agent graphs, and where it fails in CI.</p>
+      </div>
+      <img src="assets/agent-loop.png" alt="" loading="lazy">
+    </a>
+    <a class="post-card no-img" href="14-years-in-quality-engineering/">
+      <div>
+        <div class="meta"><time datetime="2026-10-07">October 7, 2026</time> · <b>4 min read</b></div>
+        <h2>14 Years in Quality Engineering: From Clicking Buttons to Edge AI Architecture</h2>
+        <p>From Excel test matrices in 2012 to agentic AI and edge hardware validation in 2026: how the role changed at each stage, and the lessons that stayed true the whole way.</p>
+      </div>
+      
+    </a>
+  </div>
+</main>
+<footer><div class="wrap">© 2026 Canro Sinabutar · all checks passing</div></footer>
+<script>
+  (function () {
+    var root = document.documentElement;
+    try {
+      var saved = localStorage.getItem('theme');
+      if (saved === 'light' || saved === 'dark') root.setAttribute('data-theme', saved);
+    } catch (e) {}
+    document.getElementById('themeBtn').addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>

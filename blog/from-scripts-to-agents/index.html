@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Scripts to Agents: Building Agentic AI Workflows for Autonomous Regression Testing · Canro Sinabutar</title>
+<meta name="description" content="Scripted automation broke every time a locator changed. Agentic QA gives an AI agent tools and a goal, then lets it perceive, decide, act and observe at runtime. How it works, how to structure multi-agent graphs, and where it fails in CI.">
+<meta property="og:title" content="From Scripts to Agents: Building Agentic AI Workflows for Autonomous Regression Testing · Canro Sinabutar">
+<meta property="og:description" content="Scripted automation broke every time a locator changed. Agentic QA gives an AI agent tools and a goal, then lets it perceive, decide, act and observe at runtime. How it works, how to structure multi-agent graphs, and where it fails in CI.">
+<meta property="og:url" content="https://canro-sinabutar.github.io/blog/from-scripts-to-agents/">
+<meta name="theme-color" content="#000000">
+<link rel="canonical" href="https://canro-sinabutar.github.io/blog/from-scripts-to-agents/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2316a34a'/%3E%3Cpath d='M9 16.5l4.5 4.5L23 11.5' stroke='white' stroke-width='3.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/blog.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="dot"></span>canro.sinabutar</a>
+    <nav>
+      <a class="hide-sm" href="/#work">Work</a>
+      <a class="hide-sm" href="/#experience">Experience</a>
+      <a class="on" href="/blog/">Blog</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+    </nav>
+  </div>
+</header>
+<main class="narrow">
+  <div class="article-head">
+    <a class="back" href="/blog/">← All posts</a>
+    <h1>From Scripts to Agents: Building Agentic AI Workflows for Autonomous Regression Testing</h1>
+    <div class="meta"><time datetime="2026-10-07">October 7, 2026</time> · <b>4 min read</b></div>
+  </div>
+  <article class="prose">
+<p>For the past decade, the gold standard of test automation was simple: write a script that navigates to a URL, locates a DOM element, executes an action, and asserts an outcome. Whether you used Selenium in 2016, Cypress in 2020, or Playwright in 2024, the underlying paradigm remained strictly <b>deterministic and scripted</b>.</p><p>If a developer changed an ID, shifted a layout, or introduced a dynamic modal, the test failed. We spent thousands of engineering hours maintaining selector locators and nursing flaky CI/CD pipelines.</p><p>In 2026, we are witnessing a fundamental paradigm shift: <b>The transition from scripted test automation to Agentic QA Workflows.</b></p><p>Instead of hand-coding 50 sequential Playwright steps, we now equip autonomous AI agents with tools (browser drivers, API clients, visual inspection models) and give them a high-level goal.</p><p>Here is an architectural breakdown of how Agentic Testing works under the hood, how to structure multi-agent workflows, and where autonomous agents hit reality in production pipelines.</p><h2>1. Scripted vs. Agentic QA: The Control Model Paradigm</h2><p>To understand Agentic QA, we have to look at <i>who</i> holds control during test execution and <i>when</i> decisions are made.</p><div class="table-wrap"><table><thead><tr><th>Dimension</th><th>Legacy Test Automation (Playwright / Selenium)</th><th>Scripted AI Generation (AI-Assisted)</th><th>Agentic QA Workflows (Autonomous Agents)</th></tr></thead><tbody><tr><td><b>Execution Control</b></td><td>Hardcoded step-by-step logic</td><td>Hardcoded steps generated once by LLM</td><td><b>Perceive-Decide-Act-Observe Loop</b> at runtime</td></tr><tr><td><b>Adaptability</b></td><td>Fails immediately on DOM changes</td><td>Requires human re-generation when broken</td><td><b>Self-corrects dynamically</b> during execution</td></tr><tr><td><b>Test Maintenance</b></td><td>High (Continuous locator repair)</td><td>High (You still own static code)</td><td><b>Low</b> (Goal-driven declarative intent)</td></tr><tr><td><b>Target Goal</b></td><td>"Click <code>#submit-btn</code> at coordinates X,Y"</td><td>"Click <code>#submit-btn</code> at coordinates X,Y"</td><td><b>"Verify user can complete checkout with a saved card"</b></td></tr></tbody></table></div><p>An agent is only genuinely <b>agentic</b> when it operates in a runtime loop: it perceives the current page state, decides the next action based on a high-level goal, executes the tool call, and observes the result before deciding what to do next.</p><h2>2. Anatomy of a QA Agent Execution Loop</h2><p>A modern QA agent does not just execute code; it reasons over dynamic state space using a structured state machine.</p><figure><img src="../assets/agent-loop.png" alt="Agent loop: goal declaration, then perceive, decide, act and observe, looping back until the goal is satisfied" width="1374" height="1340" loading="lazy"><figcaption>The QA agent execution loop</figcaption></figure><ol><li><p><b>Perceive:</b> The agent captures the current state—either via a simplified DOM accessibility tree or a Vision-Language Model (VLM) screenshot.</p></li><li><p><b>Decide:</b> The LLM evaluates its progress against the goal and chooses a tool to call (e.g., <code>click_element</code>, <code>fill_input</code>, <code>call_rest_api</code>).</p></li><li><p><b>Act:</b> The agent invokes the selected tool via protocols like standard MCP (Model Context Protocol) or browser automation bindings.</p></li><li><p><b>Observe:</b> The agent inspects the resulting state delta. If an unexpected modal pops up, the agent detects it, dismisses it, and retries the original path instead of throwing a unhandled timeout error.</p></li></ol><h2>3. Building Multi-Agent Orchestration with Python &amp; State Graphs</h2><p>Single-agent prompts quickly run out of context budget when evaluating complex enterprise applications. The architectural pattern for 2026 is <b>Multi-Agent Specialization</b>.</p><p>Instead of one monolithic agent doing everything, we separate concerns using state graph frameworks like <b>LangGraph</b> or <b>Pydantic AI</b>:</p><ul><li><p><b>Planner Agent:</b> Deconstructs user stories or PR diffs into minimal verification goals.</p></li><li><p><b>Executor Agent:</b> Interacts with the browser driver via tool calls to execute steps.</p></li><li><p><b>Critic / Evaluator Agent:</b> Evaluates visual regressions, network payloads, and business logic validity before declaring a pass/fail.</p></li></ul><h3>Example: Structuring a Multi-Agent QA Graph (Python / LangGraph Concept)</h3><div class="code-label">Python</div><pre><code class="language-python"><span class="hljs-keyword">from</span> typing <span class="hljs-keyword">import</span> TypedDict, Annotated, List
+<span class="hljs-keyword">from</span> langgraph.graph <span class="hljs-keyword">import</span> StateGraph, END
+
+<span class="hljs-comment"># Define state shared across agents</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QAWorkflowState</span>(<span class="hljs-params">TypedDict</span>):</span>
+    test_goal: <span class="hljs-built_in">str</span>
+    current_step: <span class="hljs-built_in">int</span>
+    page_dom: <span class="hljs-built_in">str</span>
+    history: List[<span class="hljs-built_in">str</span>]
+    is_completed: <span class="hljs-built_in">bool</span>
+    final_verdict: <span class="hljs-built_in">str</span>
+
+<span class="hljs-comment"># Node 1: Executor Agent decides action</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">executor_node</span>(<span class="hljs-params">state: QAWorkflowState</span>):</span>
+    <span class="hljs-comment"># LLM perceives DOM &amp; history, calls Playwright browser tool</span>
+    action = llm_agent.decide_next_action(state[<span class="hljs-string">"test_goal"</span>], state[<span class="hljs-string">"page_dom"</span>])
+    result = browser_tool.execute(action)
+    
+    state[<span class="hljs-string">"history"</span>].append(<span class="hljs-string">f"Executed: <span class="hljs-subst">{action}</span> | Result: <span class="hljs-subst">{result}</span>"</span>)
+    <span class="hljs-keyword">return</span> state
+
+<span class="hljs-comment"># Node 2: Critic Agent evaluates assertion</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">critic_node</span>(<span class="hljs-params">state: QAWorkflowState</span>):</span>
+    evaluation = critic_llm.evaluate_state(state[<span class="hljs-string">"test_goal"</span>], state[<span class="hljs-string">"history"</span>])
+    <span class="hljs-keyword">if</span> evaluation.passed:
+        state[<span class="hljs-string">"is_completed"</span>] = <span class="hljs-literal">True</span>
+        state[<span class="hljs-string">"final_verdict"</span>] = <span class="hljs-string">"PASSED"</span>
+    <span class="hljs-keyword">elif</span> evaluation.unrecoverable_bug:
+        state[<span class="hljs-string">"is_completed"</span>] = <span class="hljs-literal">True</span>
+        state[<span class="hljs-string">"final_verdict"</span>] = <span class="hljs-string">"FAILED: "</span> + evaluation.reason
+    <span class="hljs-keyword">return</span> state
+
+<span class="hljs-comment"># Graph Workflow Construction</span>
+workflow = StateGraph(QAWorkflowState)
+workflow.add_node(<span class="hljs-string">"executor"</span>, executor_node)
+workflow.add_node(<span class="hljs-string">"critic"</span>, critic_node)
+
+workflow.set_entry_point(<span class="hljs-string">"executor"</span>)
+workflow.add_edge(<span class="hljs-string">"executor"</span>, <span class="hljs-string">"critic"</span>)
+workflow.add_conditional_edges(
+    <span class="hljs-string">"critic"</span>,
+    <span class="hljs-keyword">lambda</span> state: END <span class="hljs-keyword">if</span> state[<span class="hljs-string">"is_completed"</span>] <span class="hljs-keyword">else</span> <span class="hljs-string">"executor"</span>
+)
+
+app = workflow.<span class="hljs-built_in">compile</span>()
+</code></pre><h2>4. Production Realities: Where Autonomous Agents Fail &amp; How to Safeguard Them</h2><p>While Agentic QA drastically reduces script maintenance, running unconstrained LLM loops in CI/CD pipelines brings new challenges:</p><ol><li><p><b>Non-Deterministic Flakiness:</b> An LLM might take 3 steps to checkout on Run #1, and 5 steps on Run #2.</p><ul><li><p><b>Mitigation:</b> Enforce strict <b>JSON schema outputs</b> (e.g., via Pydantic) and bound the maximum loop iterations (e.g., <code>max_steps = 10</code>).</p></li></ul></li><li><p><b>Exploding Token Costs:</b> A multi-agent loop running on every single commit can burn API tokens rapidly.</p><ul><li><p><b>Mitigation:</b> Use smaller fine-tuned local models (or SLMs) for execution perception, and reserve frontier LLMs strictly for high-level planning and failure triaging.</p></li></ul></li><li><p><b>Safety &amp; Destructive Actions:</b> An autonomous agent testing an e-commerce platform could execute real payments or delete production database records if not sandboxed.</p><ul><li><p><b>Mitigation:</b> Wrap execution tools in <b>Deterministic Guardrails</b> that intercept API calls targeting restricted endpoints.</p></li></ul></li></ol><h2>The Road Ahead</h2><p>Agentic QA does not mean the end of Software Engineers in Test—it marks our evolution into <b>Agent Architects</b>.</p><p>Our job is no longer to hand-craft static Selenium scripts line-by-line. Our job is to design robust multi-agent graphs, define deterministic tool interfaces, enforce context guardrails, and build observability pipelines that monitor agent decisions.</p><p>As application UIs become increasingly dynamic, the teams that rely on 50,000 lines of brittle locator scripts will lag behind. The future of quality belongs to autonomous, self-correcting agentic workflows.</p>
+
+  </article>
+  <div class="post-foot">
+    <a href="/blog/">← All posts</a>
+    <a href="https://www.linkedin.com/in/canro-sinabutar" target="_blank" rel="noopener">Discuss on LinkedIn →</a>
+  </div>
+</main>
+<footer><div class="wrap">© 2026 Canro Sinabutar · all checks passing</div></footer>
+<script>
+  (function () {
+    var root = document.documentElement;
+    try {
+      var saved = localStorage.getItem('theme');
+      if (saved === 'light' || saved === 'dark') root.setAttribute('data-theme', saved);
+    } catch (e) {}
+    document.getElementById('themeBtn').addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>

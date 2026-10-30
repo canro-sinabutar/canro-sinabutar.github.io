@@ -1,0 +1,766 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Canro Sinabutar · Senior SDET</title>
+<meta name="description" content="Canro Sinabutar, Senior SDET and QA Automation Architect with 14+ years in web, mobile and API test automation.">
+<meta property="og:title" content="Canro Sinabutar · Senior SDET">
+<meta property="og:description" content="Senior SDET and QA Automation Architect. 14+ years of web, mobile and API test automation.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#000000">
+<meta property="og:url" content="https://canro-sinabutar.github.io/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2316a34a'/%3E%3Cpath d='M9 16.5l4.5 4.5L23 11.5' stroke='white' stroke-width='3.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #f7f8fa;
+    --surface: #ffffff;
+    --surface-2: #f1f3f6;
+    --text: #0f172a;
+    --muted: #556070;
+    --border: #e2e6ec;
+    --accent: #16a34a;
+    --accent-soft: #dcfce7;
+    --accent-text: #15803d;
+    --info: #2563eb;
+    --warn: #b45309;
+    --shadow: 0 1px 2px rgba(15, 23, 42, .04), 0 8px 24px rgba(15, 23, 42, .06);
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #000000;
+      --surface: #0a0a0a;
+      --surface-2: #141414;
+      --text: #f5f5f5;
+      --muted: #a3a3a3;
+      --border: #262626;
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, .12);
+      --accent-text: #4ade80;
+      --info: #60a5fa;
+      --warn: #fbbf24;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 32px rgba(0, 0, 0, .35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #000000;
+    --surface: #0a0a0a;
+    --surface-2: #141414;
+    --text: #f5f5f5;
+    --muted: #a3a3a3;
+    --border: #262626;
+    --accent: #22c55e;
+    --accent-soft: rgba(34, 197, 94, .12);
+    --accent-text: #4ade80;
+    --info: #60a5fa;
+    --warn: #fbbf24;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 32px rgba(0, 0, 0, .35);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* nav */
+  header.nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+  .brand { font-family: var(--mono); font-weight: 600; font-size: 14px; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+  .brand .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .nav nav { display: flex; align-items: center; gap: 22px; }
+  .nav nav a { text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 500; }
+  .nav nav a:hover { color: var(--text); }
+  .theme-btn {
+    border: 1px solid var(--border); background: var(--surface); color: var(--text);
+    width: 34px; height: 34px; border-radius: 8px; cursor: pointer; display: grid; place-items: center;
+  }
+  .theme-btn svg { width: 16px; height: 16px; }
+
+  /* hero */
+  .hero { padding: 72px 0 56px; display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 12px; color: var(--accent-text);
+    background: var(--accent-soft); padding: 6px 12px; border-radius: 999px; margin-bottom: 22px;
+  }
+  h1 { font-size: clamp(40px, 6vw, 64px); line-height: 1.04; letter-spacing: -.03em; margin: 0 0 14px; font-weight: 800; }
+  .role { font-size: clamp(18px, 2.2vw, 22px); font-weight: 600; color: var(--accent-text); margin: 0 0 18px; }
+  .lead { color: var(--muted); font-size: 17px; max-width: 560px; margin: 0 0 28px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+    padding: 11px 18px; border-radius: 10px; font-weight: 600; font-size: 15px;
+    border: 1px solid var(--border); background: var(--surface); transition: transform .15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn svg { width: 16px; height: 16px; }
+
+  /* test report card */
+  .report {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    box-shadow: var(--shadow); font-family: var(--mono); font-size: 13px; overflow: hidden;
+  }
+  .report-head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 16px; border-bottom: 1px solid var(--border); background: var(--surface-2); color: var(--muted);
+  }
+  .lights { display: flex; gap: 6px; }
+  .lights i { width: 10px; height: 10px; border-radius: 50%; background: var(--border); display: block; }
+  .report-body { padding: 14px 16px 6px; }
+  .report-body .cmd { color: var(--muted); margin-bottom: 12px; }
+  .report-body .cmd b { color: var(--text); font-weight: 500; }
+  .case { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: baseline; padding: 6px 0; opacity: 0; transform: translateY(4px); transition: opacity .35s ease, transform .35s ease; }
+  .case.show { opacity: 1; transform: none; }
+  .case .ok { color: var(--accent-text); font-weight: 600; }
+  .case .name { color: var(--text); overflow-wrap: anywhere; }
+  .case .val { color: var(--muted); white-space: nowrap; }
+  .report-foot {
+    margin-top: 8px; padding: 12px 16px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; color: var(--muted);
+  }
+  .report-foot .pass { color: var(--accent-text); font-weight: 600; }
+
+  /* stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 72px; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .stat .num { font-size: 32px; font-weight: 800; letter-spacing: -.02em; }
+  .stat .lbl { color: var(--muted); font-size: 14px; }
+
+  /* sections */
+  section { padding: 8px 0 72px; }
+  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 28px; }
+  .sec-head .tag { font-family: var(--mono); font-size: 12px; color: var(--accent-text); }
+  h2 { font-size: 30px; letter-spacing: -.02em; margin: 0; }
+
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 22px; }
+  .card h3 { margin: 0 0 8px; font-size: 17px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .card .ico { font-family: var(--mono); font-size: 12px; color: var(--accent-text); margin-bottom: 12px; display: block; }
+
+  /* timeline */
+  .timeline { position: relative; }
+  .job { display: grid; grid-template-columns: 180px 1fr; gap: 28px; padding: 22px 0; border-top: 1px solid var(--border); }
+  .job:last-child { border-bottom: 1px solid var(--border); }
+  .job .when { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 3px; }
+  .job h3 { margin: 0; font-size: 18px; }
+  .job .org { color: var(--accent-text); font-weight: 600; font-size: 15px; margin: 2px 0 10px; }
+  .job ul { margin: 0; padding-left: 18px; color: var(--muted); }
+  .job li { margin: 4px 0; }
+  .job li strong { color: var(--text); font-weight: 600; }
+
+  /* skills */
+  .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .skill-group { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .skill-group h3 { margin: 0 0 12px; font-size: 15px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { font-family: var(--mono); font-size: 12.5px; padding: 5px 10px; border-radius: 6px; background: var(--surface-2); border: 1px solid var(--border); }
+
+  /* projects */
+  .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .project { display: block; text-decoration: none; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 22px; transition: border-color .15s ease; }
+  a.project:hover { border-color: var(--accent); }
+  .project .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; gap: 12px; }
+  .project h3 { margin: 0; font-size: 17px; font-family: var(--mono); }
+  .project p { margin: 0 0 14px; color: var(--muted); font-size: 15px; }
+  .badge { font-family: var(--mono); font-size: 11px; padding: 3px 8px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); white-space: nowrap; }
+  .project.note { background: transparent; border-style: dashed; }
+
+  /* education + contact */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .contact { text-align: center; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 48px 24px; }
+  .contact h2 { margin-bottom: 10px; }
+  .contact p { color: var(--muted); margin: 0 auto 24px; max-width: 520px; }
+  .contact .cta { justify-content: center; }
+
+  footer { padding: 32px 0 48px; color: var(--muted); font-size: 13px; font-family: var(--mono); text-align: center; }
+
+  /* Personal AI OS demo: a fixed dark "screenshot" palette, independent of the site theme */
+  .os-intro { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: end; margin-bottom: 20px; }
+  .os-intro p { color: var(--muted); margin: 0; max-width: 680px; }
+  .os-note { color: var(--muted); font-size: 13px; font-family: var(--mono); margin: 12px 0 0; }
+  .os {
+    --o-bg: #0c0c0d; --o-panel: #141416; --o-panel2: #1b1b1e; --o-line: #2a2a2e;
+    --o-text: #ececec; --o-mute: #8b8b92; --o-acc: #ff7a1a; --o-green: #22c55e; --o-yellow: #eab308;
+    background: var(--o-bg); color: var(--o-text); border: 1px solid var(--o-line); border-radius: 14px;
+    overflow: hidden; font-size: 12px; line-height: 1.45; box-shadow: 0 30px 80px rgba(0, 0, 0, .5);
+  }
+  .os-top { display: flex; align-items: center; gap: 14px; padding: 10px 14px; border-bottom: 1px solid var(--o-line); }
+  .os-logo { width: 22px; height: 22px; border-radius: 6px; background: var(--o-acc); flex: none; }
+  .os-brand b { display: block; letter-spacing: .18em; font-size: 12px; }
+  .os-brand span { color: var(--o-mute); font-size: 10.5px; }
+  .os-search {
+    flex: 1; max-width: 380px; margin: 0 auto; background: var(--o-panel); border: 1px solid var(--o-line);
+    border-radius: 8px; padding: 6px 10px; color: var(--o-mute); display: flex; justify-content: space-between; gap: 8px;
+  }
+  .os-search kbd { font-family: var(--mono); font-size: 10px; border: 1px solid var(--o-line); border-radius: 4px; padding: 0 5px; }
+  .os-status {
+    margin-left: auto; display: flex; align-items: center; gap: 8px; border: 1px solid #5a3415; background: #2a1708;
+    border-radius: 8px; padding: 5px 10px; font-family: var(--mono); font-size: 10.5px; line-height: 1.3; white-space: nowrap; transition: background .4s, border-color .4s;
+  }
+  .os-status .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--o-acc); animation: osPulse 1.2s infinite; flex: none; }
+  .os-status.done { border-color: #14532d; background: #0b2615; }
+  .os-status.done .pulse { background: var(--o-green); animation: none; }
+  @keyframes osPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 122, 26, .6); } 50% { box-shadow: 0 0 0 5px rgba(255, 122, 26, 0); } }
+  .os-body { display: grid; grid-template-columns: 150px minmax(0, 1fr) 230px; min-height: 520px; }
+  .os-side { border-right: 1px solid var(--o-line); padding: 10px 8px; display: flex; flex-direction: column; gap: 2px; }
+  .os-nav { padding: 6px 8px; border-radius: 6px; color: var(--o-mute); border: 1px solid transparent; }
+  .os-nav.on { background: #2a1708; color: var(--o-text); border-color: #5a3415; font-weight: 600; }
+  .os-label { font-size: 9.5px; letter-spacing: .14em; color: var(--o-mute); margin: 14px 8px 6px; }
+  .os-ws { padding: 6px 8px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; }
+  .os-ws.on { background: var(--o-panel2); }
+  .os-ws i { width: 6px; height: 6px; border-radius: 50%; background: var(--o-yellow); }
+  .os-ws.on i { background: var(--o-green); }
+  .os-main { padding: 12px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .os-card { background: var(--o-panel); border: 1px solid var(--o-line); border-radius: 10px; padding: 10px 12px; min-width: 0; }
+  .os-meters { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .os-meter .row { display: flex; justify-content: space-between; color: var(--o-mute); margin-bottom: 5px; gap: 6px; }
+  .os-meter .row b { font-weight: 600; color: var(--o-text); white-space: nowrap; }
+  .os-bar { height: 5px; border-radius: 3px; background: var(--o-panel2); overflow: hidden; }
+  .os-bar span { display: block; height: 100%; width: 0; border-radius: 3px; transition: width .8s ease, background .8s ease; }
+  .os-tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .os-tile { background: var(--o-panel2); border: 1px solid var(--o-line); border-radius: 8px; padding: 8px; min-width: 0; }
+  .os-tile small { color: var(--o-mute); }
+  .os-tile .v { font-size: 17px; font-weight: 700; margin: 2px 0 4px; white-space: nowrap; }
+  .os-tile svg { width: 100%; height: 30px; display: block; }
+  .os-tile .os-bar { margin-top: 12px; height: 8px; }
+  .os-mission { display: flex; gap: 12px; align-items: center; }
+  .os-micon { width: 40px; height: 40px; border-radius: 10px; background: var(--o-acc); display: grid; place-items: center; flex: none; }
+  .os-micon svg { width: 20px; height: 20px; }
+  .os-mission h4 { margin: 0; font-size: 16px; }
+  .os-mission p { margin: 0; color: var(--o-mute); }
+  .os-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .os-pill { border: 1px solid var(--o-line); border-radius: 6px; padding: 3px 8px; color: var(--o-mute); }
+  .os-pill b { color: var(--o-text); font-weight: 600; }
+  .os-pill b.th { color: var(--o-acc); }
+  .os-pill b.ok { color: var(--o-green); }
+  .os-split { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex: 1; }
+  .os-h { display: flex; justify-content: space-between; font-weight: 600; margin-bottom: 8px; }
+  .os-h span { color: var(--o-mute); font-weight: 400; }
+  .os-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .os-steps li { display: flex; align-items: center; gap: 8px; color: var(--o-mute); transition: color .3s; min-width: 0; }
+  .os-steps li > span:nth-child(2) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .os-steps .ck {
+    width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--o-line); flex: none;
+    display: grid; place-items: center; font-size: 10px; font-weight: 700;
+  }
+  .os-steps li.run, .os-steps li.done { color: var(--o-text); }
+  .os-steps li.run .ck { border-color: var(--o-acc); border-top-color: transparent; animation: osSpin .8s linear infinite; }
+  .os-steps li.done .ck { background: var(--o-green); border-color: var(--o-green); color: #000; }
+  .os-steps .st { margin-left: auto; font-size: 10.5px; color: var(--o-mute); flex: none; }
+  @keyframes osSpin { to { transform: rotate(360deg); } }
+  .os-log { display: flex; flex-direction: column; gap: 8px; font-family: var(--mono); font-size: 11px; }
+  .os-log > div { display: grid; grid-template-columns: 58px minmax(0, 1fr); gap: 8px; animation: osIn .35s ease; }
+  .os-log time { color: var(--o-mute); }
+  .os-log b { color: var(--o-text); font-weight: 600; }
+  .os-log em { font-style: normal; color: var(--o-mute); display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  @keyframes osIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  .os-right { border-left: 1px solid var(--o-line); padding: 12px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .os-kv { display: flex; justify-content: space-between; color: var(--o-mute); margin: 3px 0; }
+  .os-kv b { color: var(--o-text); font-weight: 500; }
+  .os-console { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; overflow: hidden; }
+  .os-msg { background: var(--o-panel); border: 1px solid var(--o-line); border-radius: 8px; padding: 8px; animation: osIn .35s ease; }
+  .os-msg small { display: block; color: var(--o-acc); font-family: var(--mono); font-size: 9.5px; letter-spacing: .12em; margin-bottom: 2px; }
+  .os-input { border: 1px solid #5a3415; border-radius: 10px; padding: 8px 10px; color: var(--o-mute); display: flex; justify-content: space-between; align-items: center; }
+  .os-input i { width: 20px; height: 20px; border-radius: 50%; background: var(--o-acc); display: block; }
+
+  @media (max-width: 980px) {
+    .os-body { grid-template-columns: 140px minmax(0, 1fr); }
+    .os-right { display: none; }
+  }
+  @media (max-width: 640px) {
+    .os-intro { grid-template-columns: 1fr; }
+    .os-body { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+    .os-side, .os-search { display: none; }
+    .os-tiles { grid-template-columns: repeat(2, 1fr); }
+    .os-meters { grid-template-columns: 1fr; gap: 8px; }
+    .os-split { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .os-status .pulse, .os-steps li.run .ck, .os-log > div, .os-msg { animation: none; }
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding-top: 48px; }
+    .cards { grid-template-columns: 1fr 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .wrap { padding: 0 16px; }
+    .nav nav a.hide-sm { display: none; }
+    .cards, .skills, .projects, .two { grid-template-columns: 1fr; }
+    .job { grid-template-columns: 1fr; gap: 6px; }
+    .stat .num { font-size: 26px; }
+    h2 { font-size: 26px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .case { opacity: 1; transform: none; transition: none; }
+    .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="dot"></span>canro.sinabutar</a>
+    <nav>
+      <a class="hide-sm" href="#work">Work</a>
+      <a class="hide-sm" href="#ai-os">AI OS</a>
+      <a class="hide-sm" href="#experience">Experience</a>
+      <a class="hide-sm" href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+
+  <div class="hero">
+    <div>
+      <span class="eyebrow">Tangerang, Indonesia · open to SDET and QA architecture roles</span>
+      <h1>Canro Sinabutar</h1>
+      <p class="role">Senior SDET and QA Automation Architect</p>
+      <p class="lead">I build test automation for web, mobile and API platforms in fintech, e-commerce and food delivery. I design frameworks from scratch, run them in CI/CD, and build agentic AI tools that write, run and repair tests.</p>
+      <div class="cta">
+        <a class="btn primary" href="https://www.linkedin.com/in/canro-sinabutar" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn
+        </a>
+        <a class="btn" href="https://github.com/canro-sinabutar" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.1.9 2.3v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="report" aria-label="Career summary written as a test report">
+      <div class="report-head">
+        <span class="lights"><i></i><i></i><i></i></span>
+        <span>career.spec.ts</span>
+      </div>
+      <div class="report-body">
+        <div class="cmd">$ <b>npx playwright test career.spec.ts</b></div>
+        <div class="case"><span class="ok">✓</span><span class="name">years in quality engineering</span><span class="val">14+</span></div>
+        <div class="case"><span class="ok">✓</span><span class="name">product reliability at Delivery Hero</span><span class="val">+40%</span></div>
+        <div class="case"><span class="ok">✓</span><span class="name">critical defects at go-live</span><span class="val">0</span></div>
+        <div class="case"><span class="ok">✓</span><span class="name">platforms covered</span><span class="val">web · mobile · API</span></div>
+        <div class="case"><span class="ok">✓</span><span class="name">frameworks built from scratch</span><span class="val">Java · TS · Py</span></div>
+        <div class="case"><span class="ok">✓</span><span class="name">agentic AI test tooling shipped</span><span class="val">yes</span></div>
+      </div>
+      <div class="report-foot">
+        <span class="pass">6 passed</span>
+        <span>0 failed · 0 flaky</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="num">14+</div><div class="lbl">years in QA and test automation</div></div>
+    <div class="stat"><div class="num">40%</div><div class="lbl">product reliability gain at Delivery Hero</div></div>
+    <div class="stat"><div class="num">0</div><div class="lbl">critical defects at go-live on ERP and fintech modules</div></div>
+    <div class="stat"><div class="num">6</div><div class="lbl">companies, from OVO and Gojek to Delivery Hero</div></div>
+  </div>
+
+  <section id="work">
+    <div class="sec-head"><span class="tag">01</span><h2>What I do</h2></div>
+    <div class="cards">
+      <div class="card"><span class="ico">api/</span><h3>API automation at scale</h3><p>REST API frameworks in Java with Cucumber/BDD and REST Assured, running in Jenkins pipelines across distributed microservices.</p></div>
+      <div class="card"><span class="ico">ui/</span><h3>Web and mobile automation</h3><p>Playwright (TypeScript), Cypress, Selenium, and Appium for iOS and Android, wired into CI/CD with Allure reporting.</p></div>
+      <div class="card"><span class="ico">ai/</span><h3>Agentic AI for testing</h3><p>TypeScript and Python agents on local LLMs (Ollama, Llama 3.2 Vision, Qwen) that observe the app, act, check the result and regenerate broken tests.</p></div>
+      <div class="card"><span class="ico">perf/</span><h3>Performance testing</h3><p>Distributed load and stress suites with JMeter and Locust, scripted and executed end to end.</p></div>
+      <div class="card"><span class="ico">ops/</span><h3>Production quality</h3><p>Reproducing production incidents in microservices to shorten MTTR, and validating SQL data integrity across payment pipelines.</p></div>
+      <div class="card"><span class="ico">team/</span><h3>Quality leadership</h3><p>Mentoring manual QA engineers into SDET roles, writing QA handbooks, and leading automation teams.</p></div>
+    </div>
+  </section>
+
+  <section id="ai-os">
+    <div class="sec-head"><span class="tag">02</span><h2>Featured: Personal AI OS</h2></div>
+    <div class="os-intro">
+      <p>A local-first mission control for my own coding agent. It runs on local LLMs through Ollama, plans a task, calls tools step by step and shows every action live. A Guardian watches machine health and security in the background. The demo below replays a session with dummy data.</p>
+      <div class="chips"><span class="chip">Python</span><span class="chip">Ollama</span><span class="chip">Qwen3 Coder</span><span class="chip">MCP</span><span class="chip">Agentic AI</span></div>
+    </div>
+
+    <div class="os" id="aiOs" role="img" aria-label="Animated demo of the Personal AI OS dashboard, using dummy data">
+      <div class="os-top">
+        <span class="os-logo"></span>
+        <div class="os-brand"><b>QAITABS</b><span>Mission control for your local agent</span></div>
+        <div class="os-search"><span>Search commands, or ask anything…</span><kbd>Ctrl K</kbd></div>
+        <div class="os-status" id="osStatus"><span class="pulse"></span><span><b id="osStatusText">THINKING</b><br>qwen3-coder:30b</span></div>
+      </div>
+      <div class="os-body">
+        <aside class="os-side">
+          <div class="os-nav on">Guardian</div>
+          <div class="os-nav">System</div>
+          <div class="os-nav">Mission</div>
+          <div class="os-nav">Projects</div>
+          <div class="os-nav">Memory</div>
+          <div class="os-nav">Tools</div>
+          <div class="os-nav">Chat</div>
+          <div class="os-label">WORKSPACES</div>
+          <div class="os-ws on"><span>demo-shop-api</span><i></i></div>
+          <div class="os-ws"><span>notes-app</span><i></i></div>
+          <div class="os-ws"><span>payments-sdk</span><i></i></div>
+        </aside>
+
+        <div class="os-main">
+          <div class="os-card os-meters">
+            <div class="os-meter"><div class="row"><span>Machine stress</span><b id="osStress">40%</b></div><div class="os-bar"><span id="osStressBar"></span></div></div>
+            <div class="os-meter"><div class="row"><span>Guardian risk</span><b>Low</b></div><div class="os-bar"><span style="width:22%;background:#22c55e"></span></div></div>
+            <div class="os-meter"><div class="row"><span>Agent load</span><b id="osLoad">Thinking</b></div><div class="os-bar"><span id="osLoadBar"></span></div></div>
+          </div>
+
+          <div class="os-tiles">
+            <div class="os-tile"><small>CPU</small><div class="v" id="osCpu">24.0%</div><svg viewBox="0 0 100 30" preserveAspectRatio="none"><polyline id="osCpuLine" fill="none" stroke="#22c55e" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg></div>
+            <div class="os-tile"><small>Memory</small><div class="v" id="osMem">64%</div><svg viewBox="0 0 100 30" preserveAspectRatio="none"><polyline id="osMemLine" fill="none" stroke="#ff7a1a" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg></div>
+            <div class="os-tile"><small>Disk</small><div class="v">62%</div><div class="os-bar"><span style="width:62%;background:#ff7a1a"></span></div></div>
+            <div class="os-tile"><small>Network</small><div class="v" id="osNet">↓ 4 KB/s</div><svg viewBox="0 0 100 30" preserveAspectRatio="none"><polyline id="osNetLine" fill="none" stroke="#eab308" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg></div>
+          </div>
+
+          <div class="os-card">
+            <div class="os-mission">
+              <div class="os-micon"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="#000"/></svg></div>
+              <div><h4>Improve the back end security</h4><p id="osSub">Working on it now.</p></div>
+            </div>
+            <div class="os-pills">
+              <span class="os-pill">Workspace <b>demo-shop-api</b></span>
+              <span class="os-pill">Mode <b>Standard</b></span>
+              <span class="os-pill">Elapsed <b id="osElapsed">0s</b></span>
+              <span class="os-pill">Status <b class="th" id="osPill">THINKING</b></span>
+            </div>
+          </div>
+
+          <div class="os-split">
+            <div class="os-card"><div class="os-h">Task plan <span id="osCount">0 of 8 steps</span></div><ul class="os-steps" id="osSteps"></ul></div>
+            <div class="os-card"><div class="os-h">Live activity <span>tool calls</span></div><div class="os-log" id="osLog"></div></div>
+          </div>
+        </div>
+
+        <aside class="os-right">
+          <div class="os-card">
+            <div class="os-h">Awareness</div>
+            <div class="os-kv"><span>Presence</span><b id="osPresence">thinking</b></div>
+            <div class="os-kv"><span>Model</span><b>qwen3-coder:30b</b></div>
+            <div class="os-kv"><span>Tools called</span><b id="osTools">0</b></div>
+            <div class="os-kv"><span>Context used</span><b id="osCtx">12%</b></div>
+          </div>
+          <div class="os-h" style="margin:0">Console</div>
+          <div class="os-console" id="osConsole"></div>
+          <div class="os-input"><span>Message the agent…</span><i></i></div>
+        </aside>
+      </div>
+    </div>
+    <p class="os-note">Private repository. Demo with dummy data; happy to walk through the real thing on a call.</p>
+  </section>
+
+  <section id="experience">
+    <div class="sec-head"><span class="tag">03</span><h2>Experience</h2></div>
+    <div class="timeline">
+      <div class="job">
+        <div class="when">Aug 2022 to present</div>
+        <div>
+          <h3>Sr. QA Engineer Specialist, Automation</h3>
+          <div class="org">Tabsquare.ai (Delivery Hero) · Jakarta</div>
+          <ul>
+            <li>Led full-stack QA automation across web, API and mobile for a Southeast Asian food delivery ecosystem.</li>
+            <li>Architected REST API automation frameworks from scratch with Jenkins CI/CD, <strong>driving a 40% improvement in product reliability</strong>.</li>
+            <li>Co-developed an agentic AI CLI that streamlines developer testing workflows and generates test suites.</li>
+            <li>Ran distributed load and stress tests with JMeter and Locust, and reproduced production incidents to shorten MTTR.</li>
+            <li>Mentored manual QA engineers moving into SDET roles.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when">Apr 2025 to Apr 2026</div>
+        <div>
+          <h3>Principal QA Automation Architect and AI Specialist</h3>
+          <div class="org">LY_CO Tech (independent consultancy) · Jakarta</div>
+          <ul>
+            <li>Founded and led a QA automation consultancy for enterprise and startup clients.</li>
+            <li>Architected a Playwright (TypeScript) web automation framework integrated into CI/CD.</li>
+            <li>Built an agentic AI framework for autonomous web and mobile state validation using Llama 3.2 Vision and Qwen.</li>
+            <li>Built a Python agent for API automation with an Observe, Think, Act, Reflect loop and self-healing test regeneration.</li>
+            <li>Built a cross-platform mobile runner that executes one TypeScript script on iOS and Android.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when">Nov 2021 to Aug 2022</div>
+        <div>
+          <h3>Sr. Quality Engineer</h3>
+          <div class="org">Gojek / GoTo Financial · Jakarta</div>
+          <ul>
+            <li>Owned end-to-end QA for GoPayLater: account lifecycle state transitions, transaction flows and microservices logic.</li>
+            <li>Validated SQL data integrity across payment and repayment pipelines, with full traceability in TestRail.</li>
+            <li>Expanded automated regression suites with CI/CD and Allure, and removed flaky tests through monitoring.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when">Aug 2019 to Nov 2021</div>
+        <div>
+          <h3>QA Engineer</h3>
+          <div class="org">Bizzy Marketplace · Tangerang</div>
+          <ul>
+            <li>Led QA for three ERP modules (Master Data, Sales Order, Finance) with <strong>zero critical defects at go-live</strong>.</li>
+            <li>Built web, API and mobile automation frameworks from scratch and validated data pipelines across MySQL.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when">Feb 2016 to Aug 2019</div>
+        <div>
+          <h3>Senior SDET, previously Software QA Tester</h3>
+          <div class="org">OVO (PT Visionet Internasional) · Jakarta</div>
+          <ul>
+            <li>Built iOS and Android automation frameworks with Appium, Katalon Studio, and Java with REST Assured for digital wallet services.</li>
+            <li>Managed the automation team and coordinated production sanity and end-to-end regression.</li>
+            <li>Tested registration before public launch, and led QA for the KYC application.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when">Mar 2012 to Feb 2016</div>
+        <div>
+          <h3>Testing and Training Analyst</h3>
+          <div class="org">PT Astra Internasional Tbk · Jakarta</div>
+          <ul>
+            <li>Tested ERP modules across mobile, API, web and business intelligence, and ran UAT on a .NET automotive service application.</li>
+            <li>Wrote test documentation and trained end users on site after deployment.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-head"><span class="tag">04</span><h2>Skills</h2></div>
+    <div class="skills">
+      <div class="skill-group"><h3>Automation frameworks</h3><div class="chips"><span class="chip">Playwright</span><span class="chip">Cypress</span><span class="chip">Selenium</span><span class="chip">Appium</span><span class="chip">Pytest</span><span class="chip">Cucumber / BDD</span><span class="chip">REST Assured</span></div></div>
+      <div class="skill-group"><h3>Languages</h3><div class="chips"><span class="chip">TypeScript</span><span class="chip">Python</span><span class="chip">Java</span><span class="chip">JavaScript</span><span class="chip">Node.js</span><span class="chip">SQL</span></div></div>
+      <div class="skill-group"><h3>CI/CD and reporting</h3><div class="chips"><span class="chip">GitHub Actions</span><span class="chip">Jenkins</span><span class="chip">GitLab CI/CD</span><span class="chip">Bitbucket Pipelines</span><span class="chip">Docker</span><span class="chip">Allure</span></div></div>
+      <div class="skill-group"><h3>API, performance and test management</h3><div class="chips"><span class="chip">Postman</span><span class="chip">JMeter</span><span class="chip">Locust</span><span class="chip">TestRail</span><span class="chip">Jira</span><span class="chip">Microservices testing</span></div></div>
+      <div class="skill-group"><h3>AI and developer tooling</h3><div class="chips"><span class="chip">Agentic AI workflows</span><span class="chip">Ollama</span><span class="chip">Llama 3.2</span><span class="chip">Qwen</span><span class="chip">Self-healing tests</span></div></div>
+      <div class="skill-group"><h3>Domains</h3><div class="chips"><span class="chip">Food delivery</span><span class="chip">Digital wallet</span><span class="chip">Paylater</span><span class="chip">ERP</span><span class="chip">E-commerce</span></div></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="sec-head"><span class="tag">05</span><h2>Public projects</h2></div>
+    <div class="projects">
+      <a class="project" href="https://github.com/canro-sinabutar/automation-python" target="_blank" rel="noopener">
+        <div class="top"><h3>automation-python</h3><span class="badge">Python</span></div>
+        <p>Starter script for browser automation with Playwright.</p>
+        <div class="chips"><span class="chip">Playwright</span><span class="chip">Python</span></div>
+      </a>
+      <div class="project note">
+        <div class="top"><h3>more on request</h3><span class="badge">private</span></div>
+        <p>Most of my work lives in company and private repositories. I am happy to walk through the architecture on a call.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="sec-head"><span class="tag">06</span><h2>Education</h2></div>
+    <div class="two">
+      <div class="card"><span class="ico">degree/</span><h3>Bachelor of Computer Science (S.Kom)</h3><p>Information Technology, Universitas Katolik Santo Thomas, 2007 to 2011</p></div>
+      <div class="card"><span class="ico">lang/</span><h3>Languages</h3><p>English (professional working proficiency) and Bahasa Indonesia (native)</p></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact">
+      <h2>Let's talk</h2>
+      <p>Looking for someone to build or rescue a test automation platform? Reach out on LinkedIn.</p>
+      <div class="cta">
+        <a class="btn primary" href="https://www.linkedin.com/in/canro-sinabutar" target="_blank" rel="noopener">Message me on LinkedIn</a>
+        <a class="btn" href="https://github.com/canro-sinabutar" target="_blank" rel="noopener">GitHub profile</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© <span id="year">2026</span> Canro Sinabutar · all checks passing</div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('themeBtn');
+    try {
+      var saved = localStorage.getItem('theme');
+      if (saved === 'light' || saved === 'dark') root.setAttribute('data-theme', saved);
+    } catch (e) {}
+    btn.addEventListener('click', function () {
+      var current = root.getAttribute('data-theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    var cases = document.querySelectorAll('.case');
+    cases.forEach(function (el, i) {
+      setTimeout(function () { el.classList.add('show'); }, 250 + i * 220);
+    });
+  })();
+
+  // Personal AI OS demo: replays a scripted agent session on a loop. All data is made up.
+  (function () {
+    var os = document.getElementById('aiOs');
+    if (!os) return;
+    function $(id) { return document.getElementById(id); }
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var STEPS = [
+      { t: 'list_dir', p: 'src/', msg: 'Let me map the project before touching anything.' },
+      { t: 'list_dir', p: 'src/auth/' },
+      { t: 'read_file', p: 'src/auth/auth.guard.ts', msg: 'The guard accepts any token with a valid signature. Checking how expiry is handled.' },
+      { t: 'grep', p: 'process.env in src/' },
+      { t: 'read_file', p: 'src/config/jwt.config.ts', msg: 'The JWT secret has a hardcoded fallback. It should fail closed instead.' },
+      { t: 'read_file', p: 'package.json' },
+      { t: 'run', p: 'npm audit --omit=dev', msg: 'npm audit: 2 moderate issues in dev tooling, none in runtime dependencies.' },
+      { t: 'write_plan', p: 'harden JWT config, add expiry test', msg: 'Plan ready: remove the fallback secret, enforce token expiry, add a regression test.' }
+    ];
+
+    var stepsEl = $('osSteps'), logEl = $('osLog'), conEl = $('osConsole');
+    var series = { cpu: [], mem: [], net: [] };
+    for (var k = 0; k < 24; k++) { series.cpu.push(20 + Math.random() * 10); series.mem.push(64); series.net.push(Math.random() * 8); }
+    var cpu = 24, mem = 64, step = 0, elapsed = 0, tools = 0, running = true, visible = true;
+
+    function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function clock() {
+      var s = 12 * 3600 + 45 * 60 + elapsed;
+      return pad(Math.floor(s / 3600)) + ':' + pad(Math.floor(s / 60) % 60) + ':' + pad(s % 60);
+    }
+    function spark(id, arr, max) {
+      $(id).setAttribute('points', arr.map(function (v, i) {
+        return (i * 100 / (arr.length - 1)).toFixed(1) + ',' + (29 - clamp(v / max, 0, 1) * 27).toFixed(1);
+      }).join(' '));
+    }
+    function bar(id, pct, color) { var el = $(id); el.style.width = pct + '%'; el.style.background = color; }
+
+    function renderSteps() {
+      stepsEl.innerHTML = STEPS.map(function (s, i) {
+        var done = i < step, run = i === step && running;
+        return '<li class="' + (done ? 'done' : run ? 'run' : '') + '"><span class="ck">' + (done ? '✓' : '') + '</span>' +
+          '<span>' + s.t + ': ' + s.p + '</span><span class="st">' + (done ? 'Done' : run ? 'Running' : '') + '</span></li>';
+      }).join('');
+      $('osCount').textContent = step + ' of ' + STEPS.length + ' steps';
+    }
+    function addLog(s) {
+      var d = document.createElement('div');
+      d.innerHTML = '<time>' + clock() + '</time><span><b>' + s.t + '</b><em>' + s.p + '</em></span>';
+      logEl.appendChild(d);
+      while (logEl.children.length > 5) logEl.removeChild(logEl.firstChild);
+    }
+    function addMsg(text) {
+      var d = document.createElement('div');
+      d.className = 'os-msg';
+      d.innerHTML = '<small>QAITABS</small>' + text;
+      conEl.appendChild(d);
+      while (conEl.children.length > 3) conEl.removeChild(conEl.firstChild);
+    }
+    function setRunning(r) {
+      running = r;
+      $('osStatus').classList.toggle('done', !r);
+      $('osStatusText').textContent = r ? 'THINKING' : 'DONE';
+      var pill = $('osPill');
+      pill.textContent = r ? 'THINKING' : 'DONE';
+      pill.className = r ? 'th' : 'ok';
+      $('osPresence').textContent = r ? 'thinking' : 'idle';
+      $('osSub').textContent = r ? 'Working on it now.' : 'Finished. Plan ready for review.';
+    }
+
+    function metrics() {
+      cpu = clamp(cpu + (Math.random() - .5) * 14 + (running ? (45 - cpu) : (15 - cpu)) * .15, 8, 85);
+      mem = clamp(mem + (Math.random() - .5) * 2, 58, 74);
+      var net = Math.random() * (running ? 40 : 6);
+      series.cpu.push(cpu); series.cpu.shift();
+      series.mem.push(mem); series.mem.shift();
+      series.net.push(net); series.net.shift();
+      spark('osCpuLine', series.cpu, 100);
+      spark('osMemLine', series.mem, 100);
+      spark('osNetLine', series.net, 40);
+      $('osCpu').textContent = cpu.toFixed(1) + '%';
+      $('osMem').textContent = Math.round(mem) + '%';
+      $('osNet').textContent = '↓ ' + Math.round(net) + ' KB/s';
+      var stress = Math.round((cpu + mem) / 2);
+      $('osStress').textContent = stress + '% ' + (stress < 45 ? 'Normal' : stress < 65 ? 'Elevated' : 'High');
+      bar('osStressBar', stress, stress < 45 ? '#22c55e' : stress < 65 ? '#ff7a1a' : '#f05252');
+      bar('osLoadBar', running ? 55 + Math.random() * 20 : 8, running ? '#ff7a1a' : '#22c55e');
+      $('osLoad').textContent = running ? 'Thinking' : 'Idle';
+      if (running) { elapsed++; $('osElapsed').textContent = elapsed + 's'; }
+    }
+
+    function doStep() {
+      var s = STEPS[step];
+      addLog(s);
+      tools++;
+      $('osTools').textContent = tools;
+      $('osCtx').textContent = (12 + step * 7) + '%';
+      if (s.msg) addMsg(s.msg);
+      step++;
+      if (step >= STEPS.length) setRunning(false);
+      renderSteps();
+    }
+    function reset() {
+      step = 0; elapsed = 0; tools = 0;
+      logEl.innerHTML = ''; conEl.innerHTML = '';
+      $('osTools').textContent = '0';
+      $('osElapsed').textContent = '0s';
+      $('osCtx').textContent = '12%';
+      setRunning(true);
+      addMsg('Starting: improve the back end security in demo-shop-api.');
+      renderSteps();
+    }
+
+    if (reduce) {
+      reset();
+      while (step < STEPS.length) doStep();
+      metrics();
+      return;
+    }
+
+    reset();
+    metrics();
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) { visible = entries[0].isIntersecting; }).observe(os);
+    }
+    setInterval(function () { if (visible) metrics(); }, 1000);
+    (function loop() {
+      if (visible) { if (running) doStep(); else reset(); }
+      setTimeout(loop, running ? 1700 : 4500);
+    })();
+  })();
+</script>
+</body>
+</html>
